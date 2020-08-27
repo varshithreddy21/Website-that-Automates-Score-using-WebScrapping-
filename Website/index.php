@@ -50,13 +50,12 @@ header("location:login.php");
 		       	<div class='col-md-3'>$tos</div>
 		       	</div><hr>";
 		        $i=$i+1;
-		    }
+		   	 }
 			}else{
-				echo "<script>alert('hiii');</script>";
-				$getLeaderboard="select * from users  ORDER by tos DSC";
-		    	$run=mysqli_query($con,$getLeaderboard);
+				$getLeaderboard1="select * from users  ORDER by tos DESC";
+		    	$run1=mysqli_query($con,$getLeaderboard1);
 		    	$i=1;
-		    	while($row=mysqli_fetch_array($run)){
+		    	while($row=mysqli_fetch_array($run1)){
 		    	
 		        $rollnumber=$row['rollnumber'];
 		        $firstname=$row['firstname'];

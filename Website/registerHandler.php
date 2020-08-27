@@ -37,15 +37,17 @@ include("include/connect.php");
         values('$firstname','$lastname','$rollnumber','$password','$year','$branch','$section','$hackerrank',
         '$interviewbit','$codeforces','$codechef')";
         $query=mysqli_query($con,$insert);
+
         if($query){
+        	
             echo "<script> setTimeout(function(){alert('Welldone $firstname , You Succesfully created account');},1000) </script>";
-            echo "<script>window.open('index.php','_self');
+            echo "<script>window.open('login.php','_self');
 exit;</script>";
 
             
         }else{
             echo "<script>alert('$query')</script>";
-            echo "<script>window.open('signup.php',' _self');exit;</script>";
+            echo "<script>window.open('register.php',' _self');exit;</script>";
             
         }
     }

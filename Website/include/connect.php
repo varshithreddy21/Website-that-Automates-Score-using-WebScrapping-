@@ -1,5 +1,5 @@
 <?php
-$con=$con=mysqli_connect("localhost","root","","students");
+$con=mysqli_connect("localhost","root","","students");
 $sql = "CREATE TABLE IF NOT EXISTS users (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(30) NOT NULL,

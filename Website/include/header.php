@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<?php
+include 'include/connect.php';
+if(!isset($_SESSION['rollnumber']))
+header("location:login.php");
+ $rollnumber=$_SESSION['rollnumber'];
+$insert="Select * from users where rollnumber='$rollnumber'";
+ $query=mysqli_query($con,$insert);
+$row=mysqli_fetch_array($query);
+          
+            $id=$row['id'];
+            
+            $firstname=$row['firstname'];
+            $lastname=$row['lastname'];
+            $tos=$row['tos'];
+            $ibs=$row['ibs'];
+            $cfs=$row['cfs'];
+            $ccs=$row['ccs'];
+
+?>
 <html>
 <head>
   <title></title>
@@ -17,10 +36,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?php echo "index.php?id=$id"?>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="profile.php">Profile</a>
+        <a class="nav-link" href="<?php echo "profile.php?id=$id"?>">Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
@@ -33,7 +52,7 @@
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">logout</a>
+          <a class="dropdown-item" href="logout.php">logout</a>
         </div>
       </li>
       <li class="nav-item">
