@@ -10,14 +10,41 @@ header("location:login.php");
 <html>
 <head>
 	<title>hoii</title>
+	<style>
+		a:hover {color: hotpink;}
+
+
+	</style>
 </head>
 <body>
 		
 		<div class="card" style="margin:50px;" >
 			<hr>
 			<?php
+			if(isset($_POST['search'])){
+				$search=$_POST['query'];
+				$sql_query="select * from users where firstname like '%$search%' OR lastname like '%$search%' OR
+rollnumber like '%$search%'";
+				$runQuery=mysqli_query($con,$sql_query);
+		    	$i=1;
+		    	while($rows=mysqli_fetch_array($runQuery)){
+		    	
+		        $rollnumbers=$rows['rollnumber'];
+		        $firstnames=$rows['firstname'];
+		        $lastname=$rows['lastname'];
+		        $ides=$rows['id'];
+		        $toss=$rows['tos'];
 
-			if(isset($_GET['year'])||isset($_GET['branch'])||isset($_GET['class'])){
+		       	echo "<a style='color: inherit;'href='view.php?id=$ides'><div class='row' style='margin:2px;'>
+		       	<div class='col-md-2'>$i</div>
+		       	<div class='col-md-3'>$firstnames $lastname</div>
+		       	<div class='col-md-3'>$rollnumbers</div>
+		       	<div class='col-md-3'>$toss</div>
+		       	</div><hr></a>";
+		        $i=$i+1;
+		   	 }
+			}
+			else if(isset($_GET['year'])||isset($_GET['branch'])||isset($_GET['class'])){
 				#echo "<script>alert('hiii');</script>";
 				$year=$_GET['year'];
 				$branch=$_GET['branch'];
@@ -42,13 +69,15 @@ header("location:login.php");
 		        $rollnumber=$row['rollnumber'];
 		        $firstname=$row['firstname'];
 		        $lastname=$row['lastname'];
+		        $ide=$row['id'];
 		        $tos=$row['tos'];
-		       	echo "<div class='row' style='margin:2px;'>
+
+		       	echo "<a style='color: inherit;'href='view.php?id=$ide'><div class='row' style='margin:2px;'>
 		       	<div class='col-md-2'>$i</div>
 		       	<div class='col-md-3'>$firstname $lastname</div>
 		       	<div class='col-md-3'>$rollnumber</div>
 		       	<div class='col-md-3'>$tos</div>
-		       	</div><hr>";
+		       	</div><hr></a>";
 		        $i=$i+1;
 		   	 }
 			}else{
@@ -56,17 +85,17 @@ header("location:login.php");
 		    	$run1=mysqli_query($con,$getLeaderboard1);
 		    	$i=1;
 		    	while($row=mysqli_fetch_array($run1)){
-		    	
+		    	$ide=$row['id'];
 		        $rollnumber=$row['rollnumber'];
 		        $firstname=$row['firstname'];
 		        $lastname=$row['lastname'];
 		        $tos=$row['tos'];
-		       	echo "<div class='row' style='margin:2px;'>
+		       	echo "<a style='color: inherit;'href='view.php?id=$ide'><div class='row' style='margin:2px;'>
 		       	<div class='col-md-2'>$i</div>
 		       	<div class='col-md-3'>$firstname $lastname</div>
 		       	<div class='col-md-3'>$rollnumber</div>
 		       	<div class='col-md-3'>$tos</div>
-		       	</div><hr>";
+		       	</div><hr></a>";
 		        $i=$i+1;
 		    }
 			}
