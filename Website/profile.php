@@ -21,15 +21,16 @@ $row=mysqli_fetch_array($query);
 		  
 $select="select * from graph where id=$id";
 $q=mysqli_query($con,$select);
-$row1=mysqli_fetch_array($q);
-$score=$row1['score'];
- $rowcount=mysqli_num_rows($q);
- $date=$row1['date'];
+//$row1=mysqli_fetch_array($q);
+
 $data=array();
 
-for($i=0;$i<$rowcount;$i++){
+	while($rows=mysqli_fetch_array($runQuery)){
+	$score=$row1['score'];
+ 	$rowcount=mysqli_num_rows($q);
+ 	$date=$row1['date'];
 	array_push($data,array("y" =>$score, "label" => $date));
-}
+	}
 
 ?>
 
